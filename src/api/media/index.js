@@ -6,20 +6,22 @@ import { getMedia, writeMedia } from "../../lib/fs-tools.js";
 import multer from "multer";
 import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
+import { getPDFReadableStream } from "../../lib/pdf-tools.js";
+import { pipeline } from "stream";
 
 dotenv.config();
 
 const mediaRouter = express.Router();
 
 const cloudinaryPosterUpload = multer({
-    storage: new CloudinaryStorage({
-      cloudinary,
-      params: {
-        folder: "media/posters",
-      },
-    }),
-  }).single("poster");
-  
+  storage: new CloudinaryStorage({
+    cloudinary,
+    params: {
+      folder: "media/posters",
+    },
+  }),
+}).single("poster");
+
 mediaRouter.get("/", async (req, res, next) => {
   try {
     const media = await getMedia();
@@ -34,6 +36,21 @@ mediaRouter.get("/:id", async (req, res, next) => {
     const media = await getMedia();
     const match = media.find((m) => m.imdbID === req.params.id);
     res.send(match);
+  } catch (err) {
+    next(err);
+  }
+});
+
+mediaRouter.get("/:id/pdf", async (req, res, next) => {
+  try {
+    res.setHeader("Content-Disposition", "attachment; filename=media.pdf");
+    const media = await getMedia();
+    const matchedMedia = media.find((m) => m.imdbID === req.params.id);
+    const source = await getPDFReadableStream(matchedMedia);
+    const destination = res;
+    pipeline(source, destination, (err) => {
+      if (err) console.log(err);
+    });
   } catch (err) {
     next(err);
   }
