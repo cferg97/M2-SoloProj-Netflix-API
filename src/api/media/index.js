@@ -35,7 +35,7 @@ mediaRouter.get("/", async (req, res, next) => {
     const media = await getMedia();
     if (req.query && req.query.search) {
       const fromSearch = await media.filter((m) => {
-        return m.title.toLowerCase().includes(req.query.search.toLowerCase());
+        return m.Title.toLowerCase().includes(req.query.search.toLowerCase());
       });
       if (fromSearch) {
         res.send(fromSearch);
@@ -44,10 +44,13 @@ mediaRouter.get("/", async (req, res, next) => {
         const response = await axios
           .get(process.env.OMDB_ENDPOINT + req.query.search.toLowerCase())
           .then(function (response) {
-            let results = response.data.Search.slice(0, 4);
+            let results = response.data.Search[0];
             media.push(results);
             writeMedia(media);
+            res.send(results);
           });
+      } else {
+        res.send(media);
       }
     } else {
       res.send("Please enter a search query");
