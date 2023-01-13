@@ -4,7 +4,7 @@
     "Year": "2001",
     "imdbID": "tt0120737",
     "Type": "movie",
-    "poster": "https://m.media-amazon.com/images/M/MV5BMTM5MzcwOTg4MF5BMl5BanBnXkFtZTgwOTQwMzQxMDE@._V1_SX300.jpg"
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTM5MzcwOTg4MF5BMl5BanBnXkFtZTgwOTQwMzQxMDE@._V1_SX300.jpg"
   },
   {
     "Title": "The Shawshank Redemption",
@@ -12,12 +12,6 @@
     "imdbID": "tt0111161",
     "Type": "movie",
     "Poster": "https://m.media-amazon.com/images/I/51EZXDOXBfL._AC_.jpg"
-  },
-  {
-    "Title": "The Simpsons Movie",
-    "Year": "2007",
-    "imdbID": "tt0462538",
-    "Type": "movie"
   },
   {
     "Title": "Hello, My Name Is Doris",
@@ -32,5 +26,47 @@
     "imdbID": "tt0113312",
     "Type": "movie",
     "Poster": "https://m.media-amazon.com/images/M/MV5BMTczNzY2OTg0NV5BMl5BanBnXkFtZTcwNDY0OTEzMQ@@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Harry Potter and the Deathly Hallows: Part 2",
+    "Year": "2011",
+    "imdbID": "tt1201607",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMGVmMWNiMDktYjQ0Mi00MWIxLTk0N2UtN2ZlYTdkN2IzNDNlXkEyXkFqcGdeQXVyODE5NzE3OTE@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Avatar",
+    "Year": "2009",
+    "imdbID": "tt0499549",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNjA3NGExZDktNDlhZC00NjYyLTgwNmUtZWUzMDYwMTZjZWUyXkEyXkFqcGdeQXVyMTU1MDM3NDk0._V1_SX300.jpg"
+  },
+  {
+    "Title": "Avatar: The Way of Water",
+    "Year": "2022",
+    "imdbID": "tt1630029",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BYjhiNjBlODctY2ZiOC00YjVlLWFlNzAtNTVhNzM1YjI1NzMxXkEyXkFqcGdeQXVyMjQxNTE1MDA@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Star Wars: Episode IV - A New Hope",
+    "Year": "1977",
+    "imdbID": "tt0076759",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BOTA5NjhiOTAtZWM0ZC00MWNhLThiMzEtZDFkOTk2OTU1ZDJkXkEyXkFqcGdeQXVyMTA4NDI1NTQx._V1_SX300.jpg"
+  },
+  {
+    "Title": "Star Wars: Episode VIII - The Last Jedi",
+    "Year": "2017",
+    "imdbID": "tt2527336",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMjQ1MzcxNjg4N15BMl5BanBnXkFtZTgwNzgwMjY4MzI@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Top Gun: Maverick",
+    "Year": "2022",
+    "imdbID": "tt1745960",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_SX300.jpg"
   }
 ]

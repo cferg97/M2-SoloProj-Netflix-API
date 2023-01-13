@@ -41,19 +41,23 @@ mediaRouter.get("/", async (req, res, next) => {
         res.send(fromSearch);
       }
       if (fromSearch.length === 0) {
-        const response = await axios
-          .get(process.env.OMDB_ENDPOINT + req.query.search.toLowerCase())
-          .then(function (response) {
-            let results = response.data.Search[0];
-            media.push(results);
-            writeMedia(media);
-            res.send(results);
-          });
+        const response = await axios.get(
+          process.env.OMDB_ENDPOINT + req.query.search.toLowerCase()
+        );
+        console.log(response);
+        // .then(function (response) {
+        //   let results = response.data.Search[0]
+        //     ? response.data.Search[0]
+        //     : response.data.Search;
+        //   media.push(results);
+        //   writeMedia(media);
+        // })
+        // .then(res.send(media[-1]));
       } else {
         res.send(media);
       }
     } else {
-      res.send("Please enter a search query");
+      res.send(media);
     }
   } catch (err) {
     next(err);

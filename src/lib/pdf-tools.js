@@ -21,15 +21,15 @@ export const getPDFReadableStream = async (media) => {
   const docDefinition = {
     content: [
       {
-        text: media.title,
+        text: media.Title,
         style: "header",
       },
       {
-        text: media.year,
+        text: media.Year,
         style: "center",
       },
       {
-        text: media.type,
+        text: media.Type,
         style: "center",
       },
       {
@@ -38,7 +38,7 @@ export const getPDFReadableStream = async (media) => {
       },
     ],
     images: {
-      posterImg: await createBase64(media.poster),
+      posterImg: await createBase64(media.Poster),
     },
     styles: {
       header: {
