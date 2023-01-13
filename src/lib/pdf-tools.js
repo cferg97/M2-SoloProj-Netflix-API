@@ -38,7 +38,6 @@ export const getPDFReadableStream = async (media) => {
       },
     ],
     images: {
-      //   posterImg: await createBase64(media.poster),
       posterImg: await createBase64(media.poster),
     },
     styles: {

@@ -60,7 +60,7 @@ mediaRouter.post("/", async (req, res, next) => {
   try {
     const newMedia = {
       ...req.body,
-      imdbID: uniqid(),
+      
     };
     const media = await getMedia();
     media.push(newMedia);
