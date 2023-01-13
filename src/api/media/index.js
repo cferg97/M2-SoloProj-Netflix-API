@@ -8,6 +8,7 @@ import { CloudinaryStorage } from "multer-storage-cloudinary";
 import { v2 as cloudinary } from "cloudinary";
 import { getPDFReadableStream } from "../../lib/pdf-tools.js";
 import { pipeline } from "stream";
+import axios from "axios";
 
 dotenv.config();
 
@@ -23,9 +24,34 @@ const cloudinaryPosterUpload = multer({
 }).single("poster");
 
 mediaRouter.get("/", async (req, res, next) => {
+  // try {
+  //   const media = await getMedia();
+  //   res.send(media);
+  // } catch (err) {
+  //   next(err);
+  // }
+
   try {
     const media = await getMedia();
-    res.send(media);
+    if (req.query && req.query.search) {
+      const fromSearch = await media.filter((m) => {
+        return m.title.toLowerCase().includes(req.query.search.toLowerCase());
+      });
+      if (fromSearch) {
+        res.send(fromSearch);
+      }
+      if (fromSearch.length === 0) {
+        const response = await axios
+          .get(process.env.OMDB_ENDPOINT + req.query.search.toLowerCase())
+          .then(function (response) {
+            let results = response.data.Search.slice(0, 4);
+            media.push(results);
+            writeMedia(media);
+          });
+      }
+    } else {
+      res.send("Please enter a search query");
+    }
   } catch (err) {
     next(err);
   }
@@ -60,7 +86,6 @@ mediaRouter.post("/", async (req, res, next) => {
   try {
     const newMedia = {
       ...req.body,
-      
     };
     const media = await getMedia();
     media.push(newMedia);
