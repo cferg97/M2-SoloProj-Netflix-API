@@ -68,5 +68,33 @@
     "imdbID": "tt1745960",
     "Type": "movie",
     "Poster": "https://m.media-amazon.com/images/M/MV5BZWYzOGEwNTgtNWU3NS00ZTQ0LWJkODUtMmVhMjIwMjA1ZmQwXkEyXkFqcGdeQXVyMjkwOTAyMDU@._V1_SX300.jpg"
+  },
+  {
+    "Title": "The Matrix",
+    "Year": "1999",
+    "imdbID": "tt0133093",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ0Zi00ZTVkLWI0MTEtMDllZjNkYzNjNTc4L2ltYWdlXkEyXkFqcGdeQXVyNjU0OTQ0OTY@._V1_SX300.jpg"
+  },
+  {
+    "Title": "The Philosopher's Stone",
+    "Year": "1958",
+    "imdbID": "tt0052046",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BZTMzMWJiMmEtY2ZlMy00OTJmLWExNjctOTYwYTQxMDk5MzM0XkEyXkFqcGdeQXVyNDUzOTQ5MjY@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Harry Potter and the Philosopher's Stone",
+    "Year": "2001",
+    "imdbID": "tt9033676",
+    "Type": "game",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BOGI1NzQ0ZDEtZDgzOS00ZjkxLTkxNWEtYTY0ZDZhOTM3N2Y2XkEyXkFqcGdeQXVyNDIwOTkyNjM@._V1_SX300.jpg"
+  },
+  {
+    "Title": "Harry Potter and the Prisoner of Azkaban",
+    "Year": "2004",
+    "imdbID": "tt0304141",
+    "Type": "movie",
+    "Poster": "https://m.media-amazon.com/images/M/MV5BMTY4NTIwODg0N15BMl5BanBnXkFtZTcwOTc0MjEzMw@@._V1_SX300.jpg"
   }
 ]

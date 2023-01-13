@@ -9,6 +9,7 @@ import { v2 as cloudinary } from "cloudinary";
 import { getPDFReadableStream } from "../../lib/pdf-tools.js";
 import { pipeline } from "stream";
 import axios from "axios";
+import { triggerBadRequest, checkMediaSchema } from "./validator.js";
 
 dotenv.config();
 
@@ -34,25 +35,25 @@ mediaRouter.get("/", async (req, res, next) => {
   try {
     const media = await getMedia();
     if (req.query && req.query.search) {
-      const fromSearch = await media.filter((m) => {
+      const search = await media.filter((m) => {
         return m.Title.toLowerCase().includes(req.query.search.toLowerCase());
       });
-      if (fromSearch) {
-        res.send(fromSearch);
+      if (search) {
+        res.send(search);
       }
-      if (fromSearch.length === 0) {
-        const response = await axios.get(
-          process.env.OMDB_ENDPOINT + req.query.search.toLowerCase()
-        );
-        console.log(response);
-        // .then(function (response) {
-        //   let results = response.data.Search[0]
-        //     ? response.data.Search[0]
-        //     : response.data.Search;
-        //   media.push(results);
-        //   writeMedia(media);
-        // })
-        // .then(res.send(media[-1]));
+      if (search.length === 0) {
+        const response = await axios
+          .get(process.env.OMDB_ENDPOINT + req.query.search.toLowerCase())
+          .then(function (response) {
+            let results = response.data.Search[0]
+              ? response.data.Search[0]
+              : response.data.Search;
+            media.push(results);
+            writeMedia(media);
+          });
+        if (response) {
+          res.send({results});
+        }
       } else {
         res.send(media);
       }
@@ -89,19 +90,24 @@ mediaRouter.get("/:id/pdf", async (req, res, next) => {
   }
 });
 
-mediaRouter.post("/", async (req, res, next) => {
-  try {
-    const newMedia = {
-      ...req.body,
-    };
-    const media = await getMedia();
-    media.push(newMedia);
-    await writeMedia(media);
-    res.status(201).send({ id: newMedia.imdbID });
-  } catch (err) {
-    next(err);
+mediaRouter.post(
+  "/",
+  checkMediaSchema,
+  triggerBadRequest,
+  async (req, res, next) => {
+    try {
+      const newMedia = {
+        ...req.body,
+      };
+      const media = await getMedia();
+      media.push(newMedia);
+      await writeMedia(media);
+      res.status(201).send({ id: newMedia.imdbID });
+    } catch (err) {
+      next(err);
+    }
   }
-});
+);
 
 mediaRouter.post(
   "/:id/poster",
