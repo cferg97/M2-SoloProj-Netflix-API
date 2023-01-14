@@ -17,7 +17,9 @@ reviewRouter.get("/", async (req, res, next) => {
 reviewRouter.get("/:elementId", async (req, res, next) => {
   try {
     const reviews = await getReviews();
-    const matches = reviews.find((r) => r.elementId === req.params.elementId);
+    const matches = await reviews.filter(
+      (r) => r.elementId === req.params.elementId
+    );
     res.send(matches);
   } catch (err) {
     next(err);
