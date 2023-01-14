@@ -21,19 +21,23 @@ export const getPDFReadableStream = async (media) => {
   const docDefinition = {
     content: [
       {
-        text: media.Title,
+        text: "Title: " + media.Title,
         style: "header",
       },
       {
-        text: media.Year,
+        text: "Year of release: " + media.Year,
         style: "center",
       },
       {
-        text: media.Type,
+        text: "Media type: " + media.Type,
         style: "center",
       },
       {
         image: "posterImg",
+        style: "center",
+      },
+      {
+        text: media.Title + " poster",
         style: "center",
       },
     ],
