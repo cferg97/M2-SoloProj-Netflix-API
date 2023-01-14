@@ -49,13 +49,17 @@ mediaRouter.get("/", async (req, res, next) => {
         let results = reply.data.Search;
 
         if (results.length > 0) {
+          const toSend = [];
           // the following avoids appending a new array into the object, instead apppends each individual object to the array
           results.map((movie) => {
             media.push(movie);
           });
+          results.toSend.map((movie) => {
+            toSend.push(movie);
+          });
           // media.push(results);
           writeMedia(media);
-          res.send(results);
+          res.send(toSend);
         } else {
           next(createHttpError(404, "movie not found"));
         }
