@@ -121,7 +121,7 @@ mediaRouter.post(
       const index = media.findIndex((m) => m.imdbID === req.params.id);
       if (index !== -1) {
         const oldMedia = media[index];
-        const updated = { ...oldMedia, poster: req.file.path };
+        const updated = { ...oldMedia, Poster: req.file.path };
         media[index] = updated;
         await writeMedia(media);
         res.send(updated);
