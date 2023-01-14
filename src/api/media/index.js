@@ -54,7 +54,7 @@ mediaRouter.get("/", async (req, res, next) => {
           results.map((movie) => {
             media.push(movie);
           });
-          results.toSend.map((movie) => {
+          results.map((movie) => {
             toSend.push(movie);
           });
           // media.push(results);
