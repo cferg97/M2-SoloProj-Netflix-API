@@ -10,6 +10,7 @@ import { getPDFReadableStream } from "../../lib/pdf-tools.js";
 import { pipeline } from "stream";
 import axios from "axios";
 import { triggerBadRequest, checkMediaSchema } from "./validator.js";
+import createHttpError from "http-errors";
 
 dotenv.config();
 
@@ -38,24 +39,26 @@ mediaRouter.get("/", async (req, res, next) => {
       const search = await media.filter((m) => {
         return m.Title.toLowerCase().includes(req.query.search.toLowerCase());
       });
-      if (search) {
+      if (search.length > 0) {
         res.send(search);
-      }
-      if (search.length === 0) {
-        const response = await axios
-          .get(process.env.OMDB_ENDPOINT + req.query.search.toLowerCase())
-          .then(function (response) {
-            let results = response.data.Search[0]
-              ? response.data.Search[0]
-              : response.data.Search;
-            media.push(results);
-            writeMedia(media);
-          });
-        if (response) {
-          res.send({results});
-        }
       } else {
-        res.send(media);
+        const reply = await axios.get(
+          process.env.OMDB_ENDPOINT + req.query.search.toLowerCase()
+        );
+
+        let results = reply.data.Search;
+
+        if (results.length > 0) {
+          // the following avoids appending a new array into the object, instead apppends each individual object to the array
+          results.map((movie) => {
+            media.push(movie);
+          });
+          // media.push(results);
+          writeMedia(media);
+          res.send(results);
+        } else {
+          next(createHttpError(404, "movie not found"));
+        }
       }
     } else {
       res.send(media);
