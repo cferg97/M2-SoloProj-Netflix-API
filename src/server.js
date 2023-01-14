@@ -3,6 +3,7 @@ import listEndpoints from "express-list-endpoints";
 import cors from "cors";
 import * as dotenv from "dotenv";
 import mediaRouter from "./api/media/index.js";
+import reviewRouter from "./api/reviews/index.js";
 import {
   genericErrorHandler,
   unauthorizedHandler,
@@ -19,6 +20,7 @@ server.use(cors());
 server.use(express.json());
 
 server.use("/media", mediaRouter);
+server.use("/reviews", reviewRouter);
 
 server.use(badRequestHandler);
 server.use(unauthorizedHandler);
